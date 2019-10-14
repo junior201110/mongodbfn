@@ -1,0 +1,21 @@
+{
+  "name": "mongodbfn",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "author": "Washington Freitas <washington@viewup.com.br>",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/junior201110/mongodbfn"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/mongodb": "^3.3.6",
+    "@types/node": "^12.7.12",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "mongodb": "^3.3.2"
+  }
+}
