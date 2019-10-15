@@ -4,6 +4,15 @@
   "main": "lib/index.js",
   "author": "Washington Freitas <washington@viewup.com.br>",
   "license": "MIT",
+  "keywords": [
+    "mongodb", 
+    "functional programming", 
+    "mongoose", 
+    "mongoose alternatives",
+    "simple",
+    "mongodb client",
+    "pure mongodb"
+  ],
   "repository": {
     "url": "https://github.com/junior201110/mongodbfn"
   },
