@@ -15,6 +15,8 @@ In all transactions, it open a mongodb connection, await for a  callback (config
 
 This is a quick and simple example that show you how thats work. In this example we are going to list all todos in Todos collection.
 
+
+
 ```typescript
 
 import { mongoFnCreator } from 'mongodbfn'
