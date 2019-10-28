@@ -15,19 +15,23 @@ export interface ActionCreatorParams {
 export function closeClient(client: MongoClient) {
     client.close();
 }
+const connections: { [dbName: string]: MongoClient } = {};
 
-export function getClient(uri: string, options?: MongoClientOptions): MongoClient {
-    return new MongoClient(uri, { useNewUrlParser: true, ...options });
+export function getClient(dbName: string, uri: string, options?: MongoClientOptions): MongoClient {
+    if (connections[dbName]) {
+        return connections[dbName];
+    }
+    connections[dbName] = new MongoClient(uri, { useNewUrlParser: true, ...options });
+    return connections[dbName];
 }
 
 export function mongoFnCreator({ dbName, uri, clientOptions }: ActionCreatorParams) {
-    ///cb: (params: ActionCreateCallbackParams) => Promise<TResult>
     return async <TResult>(collectionName: string, executor: (params: ActionCreateCallbackParams) => Promise<TResult>) => {
-        const client = getClient(uri, clientOptions);
+        const client = getClient(dbName, uri, clientOptions);
         await client.connect();
         const db = client.db(dbName);
-        const result = await executor({ db, collection: db.collection(collectionName) });
-        closeClient(client);
-        return result;
+        return await executor({ db, collection: db.collection(collectionName) });
+        // closeClient(client);
+
     }
 };
